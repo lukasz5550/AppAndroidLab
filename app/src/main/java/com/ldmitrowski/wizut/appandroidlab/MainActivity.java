@@ -3,6 +3,7 @@ package com.ldmitrowski.wizut.appandroidlab;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && requestCode == RESULT_OK)
+
+        if (requestCode == 1 && resultCode == RESULT_OK)
         {
             Bundle extras= data.getExtras();
             String nowy = (String) extras.get("wpis");
+            Log.d("lab4", nowy);
             target.add(nowy);
             adapter.notifyDataSetChanged();
         }
