@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class MySQLite extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public MySQLite(Context context){
         super(context, "animalsDB", null, DATABASE_VERSION);
@@ -29,10 +29,10 @@ public class MySQLite extends SQLiteOpenHelper {
         database.execSQL(DATABASE_CREATE);
     }
     @Override
-    public void onUpgrade(SQLiteDatabase db,
-                          int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS animals");
-                onCreate(db);
+
+        onCreate(db);
     }
     public void dodaj(Animal zwierz){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -81,8 +81,8 @@ public class MySQLite extends SQLiteOpenHelper {
         return zwierz;
     }
     public Cursor lista(){
-        SQLiteDatabase db =
-                this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
+
         return db.rawQuery("Select * from animals",null);
     }
 

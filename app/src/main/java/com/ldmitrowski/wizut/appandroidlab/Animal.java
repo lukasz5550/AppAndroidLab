@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class Animal implements Serializable{
-    private int _id;
+    private int id;
     private String gatunek;
     private String kolor;
     private float wielkosc;
@@ -25,7 +25,7 @@ public class Animal implements Serializable{
 
     @Override
     public String toString(){
-        return "Zwierze: [id=" + _id + ", gatunek=" + gatunek + ", kolor=" + kolor + ", wielkosc= " + wielkosc + " ]";
+        return "Zwierze: [_id=" + id + ", gatunek=" + gatunek + ", kolor=" + kolor + ", wielkosc= " + wielkosc + " ]";
     }
 
     public String getOpis(){
@@ -41,9 +41,9 @@ public class Animal implements Serializable{
         return wielkosc;
     }
     public int getId(){
-        return _id;
+        return id;
     }
     public void setId(int id){
-        this._id = id;
+        this.id = id;
     }
 }
