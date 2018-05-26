@@ -66,9 +66,10 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK)
         {
             Bundle extras= data.getExtras();
-            String nowy = (String) extras.get("wpis");
-            Log.d("lab4", nowy);
-            target.add(nowy);
+            Animal nowy = (Animal) extras.getSerializable("nowy");
+            //Log.d("lab4", nowy);
+            this.db.dodaj(nowy);
+            adapter.changeCursor(db.lista());
             adapter.notifyDataSetChanged();
         }
     }
