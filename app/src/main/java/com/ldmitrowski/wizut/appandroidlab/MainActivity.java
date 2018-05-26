@@ -18,6 +18,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static android.R.attr.data;
+
 public class MainActivity extends AppCompatActivity {
     private ArrayList<String> target;
     private SimpleCursorAdapter adapter;
@@ -45,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE
         );
 
-
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(this.adapter);
 
@@ -59,6 +60,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent intencja = new Intent(getApplicationContext(), DodajWpis.class);
                 intencja.putExtra("element", zwierz);
                 startActivityForResult(intencja, 2);
+            }
+        });
+
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView name = (TextView) view.findViewById(android.R.id.text1);
+
+                db.usun(name.getText().toString());
+                adapter.changeCursor(db.lista());
+                adapter.notifyDataSetChanged();
+
+                return true;
             }
         });
 
@@ -100,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             adapter.changeCursor(db.lista());
             adapter.notifyDataSetChanged();
         }
+
     }
 
 }
